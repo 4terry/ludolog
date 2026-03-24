@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludolog - My List</title>
+    <link rel="stylesheet" href="anothercss.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="./logo_cien.png" class="logo" alt="Ludolog">
+            </a>
+            <div class="user-stats">
+                Games: 3 | Completed: 1 | Avg Rating: 8.5
+            </div>
+        </div>
+        <div class="header-right">
+            <input type="text" placeholder="Search games..." class="search-bar">
+        </div>
+    </header>
+    
+    <main>
+        <section class="my-list-section">
+            <div class="list-toolbar">
+                <div class="toolbar-left">
+                    <select class="filter-select">
+                        <option>Sort by: Date Added</option>
+                        <option>Sort by: Rating</option>
+                        <option>Sort by: Title (A-Z)</option>
+                    </select>
+                </div>
+                <div class="toolbar-right">
+                    <button class="view-btn">☰</button>
+                </div>
+            </div>
+
+            <div class="status-group">
+                <h2 class="status-title">Playing</h2>
+                <div class="games-grid-large">
+                    <div class="game-card">
+                        <div class="card-image-wrapper">
+                            <span class="badge badge-playing">Playing</span>
+                            <button class="delete-btn">✖</button>
+                            <img src="https://cdn1.epicgames.com/offer/77f2b98e2cef40c8a7437518bf420e47/EGS_Cyberpunk2077_CDPROJEKTRED_S1_03_2560x1440-359e77d3cd0a40aebf3bbc130d14c5c7" alt="Cyberpunk 2077" class="grid-poster-large">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="game-title">Cyberpunk 2077</h3>
+                            <div class="game-rating">★★★★☆</div>
+                            <p class="date-added">Added: 20.03.2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-group">
+                <h2 class="status-title">Completed</h2>
+                <div class="games-grid-large">
+                    <div class="game-card">
+                        <div class="card-image-wrapper">
+                            <span class="badge badge-completed">Completed</span>
+                            <button class="delete-btn">✖</button>
+                            <img src="https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/PL_CDProjektRED_W3NG_S1_2560x1440_2560x1440-8d2ccfcb605a08012c7a6eaa8e8b5cc0" alt="Witcher 3" class="grid-poster-large">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="game-title">The Witcher 3: Wild Hunt</h3>
+                            <div class="game-rating">★★★★★</div>
+                            <p class="date-added">Added: 15.03.2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-group">
+                <h2 class="status-title">Plan to Play</h2>
+                <div class="games-grid-large">
+                    <div class="game-card">
+                        <div class="card-image-wrapper">
+                            <span class="badge badge-plan">Plan to Play</span>
+                            <button class="delete-btn">✖</button>
+                            <img src="https://cdn1.epicgames.com/offer/b5ac16dc12f3478e99dcfea07c13865c/EGS_DOOMEternalDeluxeEdition_idSoftware_Editions_S1_2560x1440-12a6ff734f43f831e6b90eec8e411b21" alt="Doom Eternal" class="grid-poster-large">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="game-title">DOOM Eternal</h3>
+                            <div class="game-rating">☆☆☆☆☆</div>
+                            <p class="date-added">Added: Today</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+</body>
+</html>
