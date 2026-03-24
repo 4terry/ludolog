@@ -1,0 +1,323 @@
+:root {
+    --bg-main: #0a0a0a;
+    --bg-surface: #171717;
+    --text-primary: #f5f5f5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    background: #242424;
+    width: 100%;
+    padding-right: 20px;
+    padding: 0 25px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right input {
+    padding: 8px 32px;
+}
+
+.logo {
+  width: 200px;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.navigation ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.navigation a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.hero-banner {
+    height: 70vh; 
+    background-image: url('https://image.api.playstation.com/vulcan/img/cfn/11307dSLGPYbfJRCxju9sqfXEbXcBtWYayUdp7WurqlCJW00Dul5UoUIeXygp8EptD8baUnedEzegLGwqeZPuXbsFxcs6PeF.jpg'); 
+    background-size: cover; 
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    position: relative;
+}
+
+.hero-banner::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to top, #0a0a0a 0%, transparent 100%);
+}
+
+.hero-content {
+    max-width: 600px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+}
+
+.hero-desc {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.btn-add {
+    background-color: white;
+    color: black;
+}
+
+.btn-info {
+    background-color: rgba(109, 109, 110, 0.7);
+    color: white;
+}
+
+.game-row {
+    margin-top: 20px;
+    padding: 0 50px;
+    margin-bottom: 40px;
+}
+
+.row-title {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.row-posters {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+}
+
+.row-posters::-webkit-scrollbar {
+    display: none;
+}
+
+.row-poster {
+    width: 260px;
+    height: 146px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease-out;
+    flex-shrink: 0;
+}
+
+.row-poster:hover {
+    transform: scale(1.08);
+    z-index: 10;
+}
+
+.my-list-section {
+    padding: 40px 50px;
+}
+
+.user-stats {
+    font-size: 1rem;
+    color: #aaaaaa;
+    margin-left: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+.list-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #242424;
+    padding: 15px 25px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.toolbar-left {
+    display: flex;
+    gap: 15px;
+}
+
+.filter-select {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: 'Space Grotesk', sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.toolbar-right {
+    display: flex;
+    gap: 10px;
+}
+
+.view-btn {
+    background: transparent;
+    border: none;
+    color: #888;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.status-group {
+    margin-bottom: 50px;
+}
+
+.status-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+    color: var(--text-primary);
+}
+
+.games-grid-large {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.game-card {
+    background-color: #242424;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.card-image-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.grid-poster-large {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.badge-completed { background-color: #2e7d32; color: white; }
+.badge-playing { background-color: #1565c0; color: white; }
+.badge-plan { background-color: #e65100; color: white; }
+
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.game-card:hover .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    background: rgb(220, 53, 69);
+}
+
+.card-info {
+    padding: 15px;
+}
+
+.game-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.game-rating {
+    color: #ffd700;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+}
+
+.date-added {
+    font-size: 0.85rem;
+    color: #888;
+}
