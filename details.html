@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="script.js"></script>
 </head>
 <body>
     
@@ -87,7 +89,82 @@
                     </div>
                 </div>
             </div>
+        </section>
 
+        <section class="reviews-section">
+            <div class="reviews-header">
+                <h2>Reviews</h2>
+            </div>
+            
+            <div class="reviews-filter">
+                <button class="btn-filter">Latest <span class="material-icons" style="font-size: 18px;">arrow_drop_down</span></button>
+            </div>
+
+            <div class="add-review-box">
+                <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Write a Review</h3>
+                <form class="vault-form">
+                    <div class="form-row">
+                        <select id="status" class="form-input" required>
+                            <option value="completed">Completed</option>
+                            <option value="playing">Playing</option>
+                            <option value="dropped">Dropped</option>
+                        </select>
+                        <input type="number" id="rating" class="form-input" min="1" max="5" placeholder="Rating (1-5)" required>
+                    </div>
+                    <textarea id="review" class="form-input" rows="3" placeholder="What are your thoughts?" required></textarea>
+                    <button type="submit" class="btn btn-submit">Post Review</button>
+                </form>
+            </div>
+
+            <div id="user-reviews-container" class="reviews-list">
+                
+                <div class="review-item">
+                    <div class="review-avatar">
+                        <span class="material-icons">person</span>
+                    </div>
+                    <div class="review-content">
+                        <div class="review-top">
+                            <span class="reviewer-name">Krzysztof Maczeta</span>
+                            <span class="review-date">Apr 21, 2026</span>
+                        </div>
+                        <div class="review-meta">
+                            <span class="review-stars">★★★★☆</span>
+                            <span class="review-status"><span class="status-dot"></span> Completed on Windows PC</span>
+                        </div>
+                        <p class="review-text">
+                            polecam.
+                        </p>
+                        <div class="review-actions">
+                            <span class="action-btn"><span class="material-icons">favorite_border</span> 0 Likes</span>
+                            <span class="action-btn"><span class="material-icons">chat_bubble_outline</span> 0</span>
+                            <span class="action-btn">Open review</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-avatar">
+                        <span class="material-icons">person</span>
+                    </div>
+                    <div class="review-content">
+                        <div class="review-top">
+                            <span class="reviewer-name">4terry</span>
+                            <span class="review-date">Apr 21, 2026</span>
+                        </div>
+                        <div class="review-meta">
+                            <span class="review-stars">★★★★★</span>
+                            <span class="review-status"><span class="status-dot"></span> Completed</span>
+                        </div>
+                        <p class="review-text">cool ass game</p>
+                        <div class="review-actions">
+                            <span class="action-btn"><span class="material-icons">favorite_border</span> 0 Likes</span>
+                            <span class="action-btn"><span class="material-icons">chat_bubble_outline</span> 0</span>
+                            <span class="action-btn">Open review</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </section>
     </main>
 

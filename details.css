@@ -168,3 +168,101 @@
     background-color: rgba(255, 255, 255, 0.1);
     border-color: var(--text-primary);
 }
+
+.reviews-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 60px 20px;
+}
+
+.reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #262626;
+    padding-bottom: 10px;
+}
+
+.reviews-header h2 { font-size: 1.5rem; }
+
+.reviews-filter { margin-bottom: 20px; }
+.btn-filter { 
+    background: #333; color: white; border: none; padding: 6px 12px; border-radius: 4px; 
+    display: flex; align-items: center; cursor: pointer; font-family: inherit; font-size: 0.9rem;
+}
+
+.review-item {
+    display: flex;
+    gap: 15px;
+    padding: 20px 0;
+    border-bottom: 1px solid #262626;
+    animation: fadeIn 0.5s ease-in-out; /* Dodajemy małą animację dla nowych recenzji z JS! */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.review-avatar {
+    width: 45px; height: 45px; background: #4a5568; border-radius: 6px; 
+    display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0;
+}
+
+.review-content { width: 100%; }
+.review-top { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.reviewer-name { font-weight: bold; font-size: 1.1rem; }
+.review-date { color: var(--text-secondary); font-size: 0.85rem; }
+
+.review-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 0.85rem; }
+.review-stars { color: #e91e63; letter-spacing: 1px; font-size: 1.1rem;} /* Różowy kolor z Backloggd */
+.review-status { color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+.status-dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; display: inline-block; }
+
+.review-text { line-height: 1.5; color: var(--text-primary); margin-bottom: 15px; font-size: 0.95rem; }
+
+.review-actions { display: flex; gap: 20px; color: var(--text-secondary); font-size: 0.85rem; }
+.action-btn { display: flex; align-items: center; gap: 5px; cursor: pointer; transition: color 0.2s; }
+.action-btn .material-icons { font-size: 16px; }
+.action-btn:hover { color: var(--text-primary); }
+
+.add-review-box {
+    background-color: rgba(255, 255, 255, 0.03); /* Bardzo subtelne tło */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #262626;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-input {
+    background-color: #171717;
+    border: 1px solid #333;
+    color: var(--text-primary);
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-family: inherit;
+    width: 100%;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #e91e63;
+}
+
+.btn-submit {
+    background-color: var(--text-primary);
+    color: var(--bg-main);
+    width: 100%;
+    margin-top: 10px;
+}
+.btn-submit:hover {
+    background-color: #ccc;
+}
