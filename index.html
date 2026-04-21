@@ -9,25 +9,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header class="main-header">
         <div class="header-left">
-            <img src="./logo_cien.png" class="logo">
+            <a href="./index.html"><img src="./logo_cien.png" class="logo"></a>
             <nav class="navigation">
                 <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#" class="active">My List</a></li>
+                    <li><a href="./index.html" class="active">Home</a></li>
+                    <li><a href="./mylist.html" class="active">My List</a></li>
                     <li><a href="#" class="active">Reviews</a></li>
                 </ul>
             </nav>
         </div>
         <div class="header-right">
-            <input type="text" placeholder="Search games..." class="search-bar">
+            <div class="search-container">
+                <span class="material-icons search-icon">search</span>
+                <input type="text" placeholder="Search games..." class="search-input">
+            </div>
         </div>
     </header>
     <main>
-        
         <section class="hero-banner">
             <div class="hero-content">
                 <h1 class="hero-title">DOOM (1993)</h1>
@@ -36,43 +39,77 @@
                 </p>
                 <div class="hero-buttons">
                     <button class="btn btn-add">Add to List</button>
-                    <button class="btn btn-info">Details</button>
+                    <button class="btn btn-info" onclick="window.location.href='./details.html'">Details</button>
                 </div>
             </div>
         </section>
-        <section class="game-row">
+<section class="game-row">
             <h2 class="row-title">Trending this week:</h2>
             <div class="row-posters">
-                <img src="https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/PL_CDProjektRED_W3NG_S1_2560x1440_2560x1440-8d2ccfcb605a08012c7a6eaa8e8b5cc0" alt="Gra 1" class="row-poster">
-                <img src="https://cdn1.epicgames.com/offer/77f2b98e2cef40c8a7437518bf420e47/EGS_Cyberpunk2077_CDPROJEKTRED_S1_03_2560x1440-359e77d3cd0a40aebf3bbc130d14c5c7" alt="Gra 2" class="row-poster">
-                <img src="https://cdn1.epicgames.com/offer/b5ac16dc12f3478e99dcfea07c13865c/EGS_DOOMEternalDeluxeEdition_idSoftware_Editions_S1_2560x1440-12a6ff734f43f831e6b90eec8e411b21" alt="Gra 3" class="row-poster">
+                <a href="./details.html" class="card-link">
+                    <div class="game-card">
+                        <img src="https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/PL_CDProjektRED_W3NG_S1_2560x1440_2560x1440-8d2ccfcb605a08012c7a6eaa8e8b5cc0" alt="Gra 1" class="row-poster">
+                        <div class="rating-overlay">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-text">4.6</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="./details.html" class="card-link">
+                    <div class="game-card">
+                        <img src="https://cdn1.epicgames.com/offer/77f2b98e2cef40c8a7437518bf420e47/EGS_Cyberpunk2077_CDPROJEKTRED_S1_03_2560x1440-359e77d3cd0a40aebf3bbc130d14c5c7" alt="Gra 2" class="row-poster">
+                        <div class="rating-overlay">
+                            <span class="stars">★★★☆☆</span>
+                            <span class="rating-text">3.2</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./details.html" class="card-link">
+                    <div class="game-card">
+                        <img src="https://cdn1.epicgames.com/offer/b5ac16dc12f3478e99dcfea07c13865c/EGS_DOOMEternalDeluxeEdition_idSoftware_Editions_S1_2560x1440-12a6ff734f43f831e6b90eec8e411b21" alt="Gra 3" class="row-poster">
+                        <div class="rating-overlay">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text">5.0</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </section>
 
         <section class="game-row">
             <h2 class="row-title">Recently added:</h2>
             <div class="row-posters">
-                <img src="https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/PL_CDProjektRED_W3NG_S1_2560x1440_2560x1440-8d2ccfcb605a08012c7a6eaa8e8b5cc0" alt="Gra 1" class="row-poster">
-                <img src="https://cdn1.epicgames.com/offer/77f2b98e2cef40c8a7437518bf420e47/EGS_Cyberpunk2077_CDPROJEKTRED_S1_03_2560x1440-359e77d3cd0a40aebf3bbc130d14c5c7" alt="Gra 2" class="row-poster">
-                <img src="https://cdn1.epicgames.com/offer/b5ac16dc12f3478e99dcfea07c13865c/EGS_DOOMEternalDeluxeEdition_idSoftware_Editions_S1_2560x1440-12a6ff734f43f831e6b90eec8e411b21" alt="Gra 3" class="row-poster">
-            </div>
-        </section>
+                <a href="./details.html" class="card-link">
+                    <div class="game-card">
+                        <img src="https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/PL_CDProjektRED_W3NG_S1_2560x1440_2560x1440-8d2ccfcb605a08012c7a6eaa8e8b5cc0" alt="Gra 1" class="row-poster">
+                        <div class="rating-overlay">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-text">4.2</span>
+                        </div>
+                    </div>
+                </a>
 
-                <section class="game-row">
-            <h2 class="row-title">Top Rated:</h2>
-            <div class="row-posters">
-                <img src="https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/PL_CDProjektRED_W3NG_S1_2560x1440_2560x1440-8d2ccfcb605a08012c7a6eaa8e8b5cc0" alt="Gra 1" class="row-poster">
-                <img src="https://cdn1.epicgames.com/offer/77f2b98e2cef40c8a7437518bf420e47/EGS_Cyberpunk2077_CDPROJEKTRED_S1_03_2560x1440-359e77d3cd0a40aebf3bbc130d14c5c7" alt="Gra 2" class="row-poster">
-                <img src="https://cdn1.epicgames.com/offer/b5ac16dc12f3478e99dcfea07c13865c/EGS_DOOMEternalDeluxeEdition_idSoftware_Editions_S1_2560x1440-12a6ff734f43f831e6b90eec8e411b21" alt="Gra 3" class="row-poster">
-            </div>
-        </section>
+                <a href="./details.html" class="card-link">
+                    <div class="game-card">
+                        <img src="https://cdn1.epicgames.com/offer/77f2b98e2cef40c8a7437518bf420e47/EGS_Cyberpunk2077_CDPROJEKTRED_S1_03_2560x1440-359e77d3cd0a40aebf3bbc130d14c5c7" alt="Gra 2" class="row-poster">
+                        <div class="rating-overlay">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text">4.9</span>
+                        </div>
+                    </div>
+                </a>
 
-                <section class="game-row">
-            <h2 class="row-title">All Games:</h2>
-            <div class="row-posters">
-                <img src="https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/PL_CDProjektRED_W3NG_S1_2560x1440_2560x1440-8d2ccfcb605a08012c7a6eaa8e8b5cc0" alt="Gra 1" class="row-poster">
-                <img src="https://cdn1.epicgames.com/offer/77f2b98e2cef40c8a7437518bf420e47/EGS_Cyberpunk2077_CDPROJEKTRED_S1_03_2560x1440-359e77d3cd0a40aebf3bbc130d14c5c7" alt="Gra 2" class="row-poster">
-                <img src="https://cdn1.epicgames.com/offer/b5ac16dc12f3478e99dcfea07c13865c/EGS_DOOMEternalDeluxeEdition_idSoftware_Editions_S1_2560x1440-12a6ff734f43f831e6b90eec8e411b21" alt="Gra 3" class="row-poster">
+                <a href="./details.html" class="card-link">
+                    <div class="game-card">
+                        <img src="https://cdn1.epicgames.com/offer/b5ac16dc12f3478e99dcfea07c13865c/EGS_DOOMEternalDeluxeEdition_idSoftware_Editions_S1_2560x1440-12a6ff734f43f831e6b90eec8e411b21" alt="Gra 3" class="row-poster">
+                        <div class="rating-overlay">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-text">4.7</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </section>
     </main>
