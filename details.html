@@ -58,8 +58,8 @@
             
             <div class="title-row">
                 <div class="title-left">
-                    <h1 class="game-title">Minecraft</h1>
-                    <p class="game-developer">by <strong>Mojang</strong></p>
+                    <h1 class="game-title" id="dynamic-title">Minecraft</h1>
+                    <p class="game-developer" id="dynamic-developer">by <strong>Mojang</strong></p>
                 </div>
                 <div class="title-right">
                     <button class="btn btn-add">
@@ -68,21 +68,21 @@
                 </div>
             </div>
 
-            <p class="game-description">
+            <p class="game-description" id="dynamic-desc">
                 Minecraft focuses on allowing the player to explore, interact with, and modify a dynamically-generated map made of one-cubic-meter-sized blocks. In addition to blocks, the environment features plants, mobs, and items. Some activities in the game include mining for ore, fighting hostile mobs, and crafting new blocks and tools by gathering various resources found in the game. The game's open-ended model allows players to create structures, creations, and artwork on various multiplayer servers or their single-player maps.
             </p>
 
             <div class="meta-section">
                 <div class="meta-row">
                     <span class="meta-label">GENRES</span>
-                    <div class="pills-group">
+                    <div class="pills-group" id="dynamic-genres">
                         <span class="pill">Adventure</span>
                         <span class="pill">Simulator</span>
                     </div>
                 </div>
                 <div class="meta-row">
                     <span class="meta-label">PLATFORMS</span>
-                    <div class="pills-group">
+                    <div class="pills-group" id="dynamic-platforms">
                         <span class="pill"><span class="material-icons" style="font-size: 14px;">computer</span> Windows PC</span>
                         <span class="pill"><span class="material-icons" style="font-size: 14px;">videogame_asset</span> PlayStation 5</span>
                         <span class="pill">Xbox Series X|S</span>
@@ -102,7 +102,7 @@
 
             <div class="add-review-box">
                 <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Write a Review</h3>
-                <form class="vault-form">
+                <form class="details-form">
                     <div class="form-row">
                         <select id="status" class="form-input" required>
                             <option value="completed">Completed</option>

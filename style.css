@@ -266,3 +266,70 @@ body {
     font-weight: 700;
     font-size: 1.1rem;
 }
+
+@media (max-width: 768px) {
+    
+    .main-header {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+        position: relative;
+    }
+
+    .header-left {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .logo {
+        width: 150px;
+        margin-right: 0;
+    }
+
+    .navigation ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .hero-banner {
+        padding: 0 20px;
+    }
+
+    .game-row {
+        padding: 0 20px;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-desc {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .search-container {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .search-input {
+        width: 100%;
+    }
+    
+    .search-input:focus {
+        width: 100%;
+    }
+}
