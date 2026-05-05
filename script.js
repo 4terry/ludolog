@@ -141,7 +141,5 @@ const trendingContainer = document.getElementById("rawg-trending-container");
             })
             .catch(error => {
                 console.error("Loading error:", error);
-                document.getElementById('dynamic-title').textContent = "Błąd ładowania gry";
-                document.getElementById('dynamic-desc').textContent = "Upewnij się, że nie wyczerpałeś limitu zapytań API.";
             });
     }
