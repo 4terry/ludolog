@@ -52,8 +52,6 @@ const trendingContainer = document.getElementById("rawg-trending-container");
     if (trendingContainer) {
         const RAWG_API_KEY = "ee560a75d09c466d8e1b4a7e09dda290";
 
-        console.log("Uderzam do RAWG API...");
-
         fetch(`https://api.rawg.io/api/games?key=${RAWG_API_KEY}&ordering=-added&page_size=4`)
             .then(response => {
                 if (!response.ok) {
