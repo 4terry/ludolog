@@ -126,3 +126,12 @@
 .game-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 5px; }
 .game-rating { color: #ffd700; margin-bottom: 8px; letter-spacing: 2px; }
 .date-added { font-size: 0.85rem; color: #888; }
+
+.user-stats {
+    font-size: 1rem;
+    color: #aaaaaa;
+    margin-left: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 6px;
+}
