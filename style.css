@@ -333,3 +333,22 @@ body {
         width: 100%;
     }
 }
+
+.grid-posters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.grid-posters .game-card {
+    width: 100%;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    display: none;
+}

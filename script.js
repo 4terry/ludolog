@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const RAWG_API_KEY = "ee560a75d09c466d8e1b4a7e09dda290";
 
-    function createGameCard(game) {
+    function buildGameCard(game) {
         const gameCardLink = document.createElement("a");
         gameCardLink.href = `./details.html?id=${game.id}`; 
         gameCardLink.className = "card-link";
@@ -36,66 +36,103 @@ document.addEventListener("DOMContentLoaded", function() {
         return gameCardLink;
     }
 
+    const recentlyAddedContainer = document.getElementById("rawg-recently-added-container");
     const trendingContainer = document.getElementById("rawg-trending-container");
-    const allGamesContainer = document.getElementById("rawg-all-games-container");
+    const loadingSpinner = document.getElementById("loading-spinner");
+    const scrollTrigger = document.getElementById("infinite-scroll-trigger");
 
-    async function loadMainPageGames() {
+    let currentPage = 1;
+    let isFetching = false;
+
+    async function loadTrendingGames() {
         if (!trendingContainer) return;
-
-        trendingContainer.textContent = "Ładowanie hitów z RAWG...";
-        if (allGamesContainer) allGamesContainer.textContent = "Ładowanie bazy gier...";
-
+        trendingContainer.textContent = "Ładowanie hitów...";
         try {
-            const resTrending = await fetch(`https://api.rawg.io/api/games?key=${RAWG_API_KEY}&ordering=-added&page_size=5`);
-            const dataTrending = await resTrending.json();
-            trendingContainer.textContent = ''; 
-            dataTrending.results.forEach(game => {
-                trendingContainer.appendChild(createGameCard(game));
+            const today = new Date().toISOString().split('T')[0];
+            const lastYear = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString().split('T')[0];
+            
+            const res = await fetch(`https://api.rawg.io/api/games?key=${RAWG_API_KEY}&dates=${lastYear},${today}&ordering=-added&page_size=10`);
+            if (!res.ok) throw new Error("API error");
+            const data = await res.json();
+            trendingContainer.textContent = '';
+            data.results.forEach(game => {
+                trendingContainer.appendChild(buildGameCard(game));
             });
-
-            if (allGamesContainer) {
-                const resAll = await fetch(`https://api.rawg.io/api/games?key=${RAWG_API_KEY}&ordering=-rating&page_size=8`);
-                const dataAll = await resAll.json();
-                allGamesContainer.textContent = '';
-                dataAll.results.forEach(game => {
-                    allGamesContainer.appendChild(createGameCard(game));
-                });
-            }
         } catch (err) {
             console.error(err);
-            trendingContainer.textContent = "Nie udało się załadować gier 💀";
+            trendingContainer.textContent = "Błąd pobierania trendów";
         }
     }
-    loadMainPageGames();
+
+    async function fetchMoreRecentlyAdded() {
+        if (isFetching || !recentlyAddedContainer) return;
+        isFetching = true;
+        if (loadingSpinner) loadingSpinner.style.display = "block";
+
+        try {
+            const res = await fetch(`https://api.rawg.io/api/games?key=${RAWG_API_KEY}&ordering=-released&page_size=20&page=${currentPage}`);
+            if (!res.ok) throw new Error("API error");
+            const data = await res.json();
+            
+            if (currentPage === 1) recentlyAddedContainer.textContent = ''; 
+
+            data.results.forEach(game => {
+                if (game.background_image) {
+                    recentlyAddedContainer.appendChild(buildGameCard(game));
+                }
+            });
+
+            currentPage++; 
+        } catch (err) {
+            console.error(err);
+        } finally {
+            isFetching = false;
+            if (loadingSpinner) loadingSpinner.style.display = "none";
+        }
+    }
+
+    if (trendingContainer) loadTrendingGames();
+    if (recentlyAddedContainer) fetchMoreRecentlyAdded();
+
+    if (scrollTrigger && recentlyAddedContainer) {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                fetchMoreRecentlyAdded();
+            }
+        }, { rootMargin: "200px" });
+        observer.observe(scrollTrigger);
+    }
 
     const searchInput = document.querySelector('.search-input');
     if (searchInput) {
         searchInput.addEventListener('keypress', async function (e) {
             if (e.key === 'Enter') {
                 const query = searchInput.value.trim();
-                if (!query || !trendingContainer) return;
+                const targetContainer = recentlyAddedContainer || trendingContainer;
+                
+                if (!query || !targetContainer) return;
 
                 const rowTitle = document.querySelector('.row-title');
-                if (rowTitle) rowTitle.textContent = `Wyniki dla: ${query}`;
+                if (rowTitle) rowTitle.textContent = `Wyniki wyszukiwania dla: ${query}`;
                 
-                trendingContainer.textContent = 'Szukam gier w bazie...';
-                if (allGamesContainer) allGamesContainer.style.display = 'none'; 
+                targetContainer.textContent = 'Szukam gier w bazie RAWG...';
+                if (scrollTrigger) scrollTrigger.style.display = 'none';
 
                 try {
-                    const res = await fetch(`https://api.rawg.io/api/games?key=${RAWG_API_KEY}&search=${query}&page_size=6`);
+                    const res = await fetch(`https://api.rawg.io/api/games?key=${RAWG_API_KEY}&search=${query}&page_size=12`);
                     const data = await res.json();
-                    trendingContainer.textContent = '';
+                    targetContainer.textContent = '';
 
                     if (data.results.length === 0) {
-                        trendingContainer.textContent = 'Brak wyników ☠️';
+                        targetContainer.textContent = 'Brak wyników';
                         return;
                     }
 
                     data.results.forEach(game => {
-                        trendingContainer.appendChild(createGameCard(game));
+                        targetContainer.appendChild(buildGameCard(game));
                     });
                 } catch (err) {
-                    trendingContainer.textContent = 'Błąd podczas szukania.';
+                    targetContainer.textContent = 'Błąd podczas szukania.';
                 }
             }
         });
@@ -109,17 +146,18 @@ document.addEventListener("DOMContentLoaded", function() {
         async function loadGameDetails() {
             try {
                 const res = await fetch(`https://api.rawg.io/api/games/${gameId}?key=${RAWG_API_KEY}`);
-                if (!res.ok) throw new Error();
+                if (!res.ok) throw new Error('Details loading error');
                 const game = await res.json();
                 currentGameData = game; 
 
                 document.getElementById('dynamic-title').textContent = game.name;
-                            
-                document.getElementById('dynamic-desc').textContent = game.description_raw;
+                document.getElementById('dynamic-desc').textContent = game.description_raw || "Brak opisu.";
 
                 const devContainer = document.getElementById('dynamic-developer');
                 if (game.developers && game.developers.length > 0) {
                     devContainer.textContent = `by ${game.developers[0].name}`;
+                } else {
+                    devContainer.textContent = '';
                 }
 
                 const genresContainer = document.getElementById('dynamic-genres');
@@ -152,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     track.appendChild(img2);
                 }
             } catch (err) {
-                console.error("Błąd ładowania szczegółów", err);
+                console.error(err);
             }
         }
         loadGameDetails();
@@ -165,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             if (currentGameData) {
                 if (myList.some(g => g.id === currentGameData.id)) {
-                    alert("Ta gra już jest na Twojej liście! 😎");
+                    alert("Ta gra już jest na Twojej liście!");
                     return;
                 }
                 const gameToSave = {
@@ -179,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 localStorage.setItem('myGamesList', JSON.stringify(myList));
                 alert("Dodano do listy! Sprawdź zakładkę My List.");
             } else {
-                alert("Dodano domyślną gierkę z bannera do pamięci przeglądarki!");
+                alert("Nie znaleziono danych dynamicznych gry.");
             }
         });
     }
@@ -247,4 +285,78 @@ document.addEventListener("DOMContentLoaded", function() {
             form.reset();
         });
     }
+
+    const myListPlanContainer = document.getElementById("mylist-plan-container");
+
+    function renderUserList() {
+        if (!myListPlanContainer) return; 
+
+        myListPlanContainer.textContent = '';
+
+        const currentSavedList = JSON.parse(localStorage.getItem('myGamesList')) || [];
+
+        if (currentSavedList.length === 0) {
+            myListPlanContainer.textContent = "Twoja lista jest całkowicie pusta! Dodaj gry na stronie głównej.";
+            return;
+        }
+
+        currentSavedList.forEach((game, index) => {
+            const card = document.createElement("div");
+            card.className = "game-card";
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "card-image-wrapper";
+
+            const badge = document.createElement("span");
+            badge.className = `badge badge-${game.status}`;
+            badge.textContent = "Plan to Play";
+
+            const delBtn = document.createElement("button");
+            delBtn.className = "delete-btn";
+            delBtn.textContent = "✖";
+            
+            delBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentSavedList.splice(index, 1);
+                localStorage.setItem('myGamesList', JSON.stringify(currentSavedList));
+                renderUserList(); 
+            });
+
+            const img = document.createElement("img");
+            img.src = game.image || './logo_cien.png';
+            img.className = "grid-poster-large";
+            img.alt = game.name;
+
+            wrapper.appendChild(badge);
+            wrapper.appendChild(delBtn);
+            wrapper.appendChild(img);
+
+            const info = document.createElement("div");
+            info.className = "card-info";
+
+            const title = document.createElement("h3");
+            title.className = "game-title";
+            title.textContent = game.name;
+
+            const ratingDiv = document.createElement("div");
+            ratingDiv.className = "game-rating";
+            const starsNum = Math.round(game.rating) || 0;
+            ratingDiv.textContent = "★".repeat(starsNum) + "☆".repeat(5 - starsNum);
+
+            const dateP = document.createElement("p");
+            dateP.className = "date-added";
+            dateP.textContent = "Added: Recently";
+
+            info.appendChild(title);
+            info.appendChild(ratingDiv);
+            info.appendChild(dateP);
+
+            card.appendChild(wrapper);
+            card.appendChild(info);
+
+            myListPlanContainer.appendChild(card);
+        });
+    }
+
+    renderUserList();
 });
