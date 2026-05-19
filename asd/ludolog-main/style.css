@@ -1,0 +1,354 @@
+:root {
+    --bg-main: #0a0a0a;
+    --bg-surface: #171717;
+    --text-primary: #f5f5f5;
+    --text-secondary: #a3a3a3;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    background: #242424;
+    width: 100%;
+    padding-right: 20px;
+    padding: 0 25px;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right input {
+    padding: 8px 32px;
+}
+
+.logo {
+  width: 200px;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.navigation ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.navigation a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.hero-banner {
+    height: 70vh; 
+    background-image: url('https://image.api.playstation.com/vulcan/img/cfn/11307dSLGPYbfJRCxju9sqfXEbXcBtWYayUdp7WurqlCJW00Dul5UoUIeXygp8EptD8baUnedEzegLGwqeZPuXbsFxcs6PeF.jpg'); 
+    background-size: cover; 
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    
+    position: relative; /*gradient*/
+}
+
+.hero-banner::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to top, #0a0a0a 0%, transparent 100%);
+}
+
+.hero-content {
+    max-width: 600px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+}
+
+.hero-desc {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.btn-add {
+    background-color: white;
+    color: black;
+}
+
+.btn-info {
+    background-color: rgba(109, 109, 110, 0.7);
+    color: white;
+}
+
+.game-row {
+    margin-top: 20px;
+    padding: 0 50px;
+    margin-bottom: 40px;
+}
+
+.row-title {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.row-posters {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+}
+
+.row-posters::-webkit-scrollbar {
+    display: none;
+}
+
+.row-poster {
+    width: 260px;
+    height: 146px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease-out;
+    flex-shrink: 0;
+}
+
+.row-poster:hover {
+    transform: scale(1.08);
+    z-index: 10;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid transparent;
+    border-radius: 20px;
+    padding: 6px 16px;
+    transition: all 0.3s ease;
+}
+
+.search-container:focus-within {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-color: var(--text-primary);
+}
+
+.search-icon {
+    color: var(--text-secondary);
+    margin-right: 10px;
+    font-size: 20px; 
+    transition: color 0.3s ease;
+}
+
+.search-container:focus-within .search-icon {
+    color: var(--text-primary);
+}
+
+.search-input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 14px;
+    width: 180px;
+    outline: none;
+    transition: width 0.3s ease;
+}
+
+.search-input:focus {
+    width: 250px; 
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.game-card {
+    position: relative;
+    width: 260px;
+    height: 146px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-out;
+}
+
+.game-card:hover {
+    transform: scale(1.08);
+    z-index: 10;
+}
+
+.row-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.rating-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+.game-card:hover .rating-overlay {
+    transform: translateY(0);
+}
+
+.stars {
+    color: #f1c40f; 
+    letter-spacing: 2px;
+}
+
+.rating-text {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    
+    .main-header {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+        position: relative;
+    }
+
+    .header-left {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .logo {
+        width: 150px;
+        margin-right: 0;
+    }
+
+    .navigation ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .hero-banner {
+        padding: 0 20px;
+    }
+
+    .game-row {
+        padding: 0 20px;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-desc {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .search-container {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .search-input {
+        width: 100%;
+    }
+    
+    .search-input:focus {
+        width: 100%;
+    }
+}
+
+.grid-posters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.grid-posters .game-card {
+    width: 100%;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    display: none;
+}
