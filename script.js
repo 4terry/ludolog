@@ -114,8 +114,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 currentGameData = game; 
 
                 document.getElementById('dynamic-title').textContent = game.name;
-            
-                document.getElementById('dynamic-desc').innerHTML = game.description;
+                            
+                document.getElementById('dynamic-desc').textContent = game.description_raw;
 
                 const devContainer = document.getElementById('dynamic-developer');
                 if (game.developers && game.developers.length > 0) {
