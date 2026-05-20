@@ -43,6 +43,52 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let currentPage = 1;
     let isFetching = false;
+    let currentGameData = null; 
+
+    async function loadRandomHeroBanner() {
+        const heroBanner = document.getElementById("hero-banner");
+        if (!heroBanner) return;
+
+        try {
+            const res = await fetch(`https://api.rawg.io/api/games?key=${RAWG_API_KEY}&ordering=-added&metacritic=80,100&page_size=20`);
+            if (!res.ok) throw new Error("Błąd pobierania listy na banner");
+            const data = await res.json();
+
+            const randomIndex = Math.floor(Math.random() * data.results.length);
+            const randomGameInfo = data.results[randomIndex];
+
+            const detailsRes = await fetch(`https://api.rawg.io/api/games/${randomGameInfo.id}?key=${RAWG_API_KEY}`);
+            if (!detailsRes.ok) throw new Error("Błąd pobierania szczegółów gry na banner");
+            const gameDetails = await detailsRes.json();
+            currentGameData = gameDetails;
+
+            const heroTitle = document.getElementById("hero-title");
+            const heroDesc = document.getElementById("hero-desc");
+            const detailsBtn = document.getElementById("hero-details-btn");
+
+            heroBanner.style.backgroundImage = `url('${gameDetails.background_image}')`;
+            
+            if (heroTitle) {
+                heroTitle.textContent = gameDetails.name;
+            }
+
+            if (heroDesc) {
+                const desc = gameDetails.description_raw || "Brak opisu dla tej gry.";
+                heroDesc.textContent = desc.length > 200 ? desc.substring(0, 200) + "..." : desc;
+            }
+
+            if (detailsBtn) {
+                detailsBtn.addEventListener("click", function() {
+                    window.location.href = `./details.html?id=${gameDetails.id}`;
+                });
+            }
+
+        } catch (err) {
+            console.error("Błąd podczas ładowania Hero Bannera: ", err);
+            const heroTitle = document.getElementById("hero-title");
+            if (heroTitle) heroTitle.textContent = "Nie udało się załadować gry";
+        }
+    }
 
     async function loadTrendingGames() {
         if (!trendingContainer) return;
@@ -92,6 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     if (trendingContainer) loadTrendingGames();
+    loadRandomHeroBanner();
     if (recentlyAddedContainer) fetchMoreRecentlyAdded();
 
     if (scrollTrigger && recentlyAddedContainer) {
@@ -140,7 +187,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const urlParams = new URLSearchParams(window.location.search);
     const gameId = urlParams.get('id');
-    let currentGameData = null; 
 
     if (gameId) {
         async function loadGameDetails() {
