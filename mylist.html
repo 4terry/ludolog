@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludolog - My List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mylist.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="./logo_cien.png" class="logo" alt="Ludolog">
+            </a>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./mylist.html" class="active">My List</a></li>
+                </ul>
+            </nav>
+        </div>
+       <div class="header-right">
+            <div class="search-container">
+                <span class="material-icons search-icon">search</span>
+                <input type="text" placeholder="Search games..." class="search-input">
+            </div>
+        </div>
+    </header>
+
+    <main class="my-list-section">
+        <div class="status-group">
+            <h2 class="status-title">Plan to Play</h2>
+            <div class="games-grid-large" id="mylist-plan-container">
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="list.js"></script>
+</body>
+</html>

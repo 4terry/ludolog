@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludolog</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <a href="./index.html"><img src="./logo_cien.png" class="logo" alt="Ludolog Logo"></a>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="./index.html" class="active">Home</a></li>
+                    <li><a href="./mylist.html">My List</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="search-container">
+                <span class="material-icons search-icon">search</span>
+                <input type="text" placeholder="Search games..." class="search-input">
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="hero-banner" id="hero-banner">
+            <div class="hero-content">
+                <h1 class="hero-title" id="hero-title">ładowanie</h1>
+                <p class="hero-desc" id="hero-desc">
+                    trwa pobieranie gry
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-add">Add to List</button>
+                    <button class="btn btn-info" id="hero-details-btn">Details</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-row">
+            <h2 class="row-title">Trending now:</h2>
+            <div class="row-posters" id="rawg-trending-container">
+            </div>
+        </section>
+
+        <section class="game-row">
+            <h2 class="row-title" style="margin-bottom: 15px;">All games:</h2>
+            
+            <div class="grid-posters" id="rawg-recently-added-container">
+            </div>
+            
+            <div id="infinite-scroll-trigger" style="height: 20px; width: 100%;"></div>
+            
+            <div class="loading-spinner" id="loading-spinner" style="text-transform: lowercase;">ładowanie...</div>
+        </section>
+    </main>
+    <script type="module" src="home.js"></script>
+</body>
+</html>
