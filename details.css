@@ -197,7 +197,7 @@
     gap: 15px;
     padding: 20px 0;
     border-bottom: 1px solid #262626;
-    animation: fadeIn 0.5s ease-in-out; /* Dodajemy małą animację dla nowych recenzji z JS! */
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -228,7 +228,7 @@
 .action-btn:hover { color: var(--text-primary); }
 
 .add-review-box {
-    background-color: rgba(255, 255, 255, 0.03); /* Bardzo subtelne tło */
+    background-color: rgba(255, 255, 255, 0.03);
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 30px;
